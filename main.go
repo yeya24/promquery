@@ -14,8 +14,8 @@ import (
 )
 
 const (
-	queryCPU              = `sum(kube_node_status_capacity_cpu_cores{cluster="%s"}) * 1000`
-	queryMemory           = `sum(kube_node_status_capacity_memory_bytes{cluster="%s"})/1024/1024`
+	queryCPU              = `sum(kube_node_status_capacity{cluster="%s", resource="cpu"}) * 1000`
+	queryMemory           = `sum(kube_node_status_capacity{cluster="%s", resource="memory"})/1024/1024`
 	queryEphemeralStorage = `sum(node_filesystem_size_bytes{fstype=~"ext[234]|btrfs|xfs|zfs",cluster="%s", job="node-exporter", mountpoint="/var"} )/1024/1024/1024`
 	queryStorage          = `ceph_cluster_total_bytes{cluster="%s"}/1024/1024/1024`
 )
